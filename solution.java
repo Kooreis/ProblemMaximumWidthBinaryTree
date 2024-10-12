@@ -1,12 +1,31 @@
-import java.util.LinkedList;
-import java.util.Queue;
+class BinaryTree {
+    Node root;
 
-class Node {
-    int data;
-    Node left, right;
+    int getMaxWidth(Node node) {
+        if (node == null)
+            return 0;
 
-    Node(int item) {
-        data = item;
-        left = right = null;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(node);
+
+        int maxWidth = 0;
+
+        while (!queue.isEmpty()) {
+            int count = queue.size();
+            maxWidth = Math.max(maxWidth, count);
+
+            while (count-- > 0) {
+                Node temp = queue.remove();
+
+                if (temp.left != null) {
+                    queue.add(temp.left);
+                }
+
+                if (temp.right != null) {
+                    queue.add(temp.right);
+                }
+            }
+        }
+        return maxWidth;
     }
 }
