@@ -1,14 +1,21 @@
-using System;
-using System.Collections.Generic;
-
-public class Node
+public class BinaryTree
 {
-    public int data;
-    public Node left, right;
+    Node root;
 
-    public Node(int item)
+    public int getMaxWidth(Node node)
     {
-        data = item;
-        left = right = null;
+        int maxWidth = 0;
+        int width;
+        int h = height(node);
+        int i;
+
+        for (i = 1; i <= h; i++)
+        {
+            width = getWidth(node, i);
+            if (width > maxWidth)
+                maxWidth = width;
+        }
+
+        return maxWidth;
     }
 }
